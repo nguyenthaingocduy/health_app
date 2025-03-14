@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\BaseRepository;
 
-class Userrepository extends BaseRepository  implements UserRepositoryInterface{
+class UserRepository extends BaseRepository  implements UserRepositoryInterface{
 
 
     protected $model;
@@ -13,9 +13,7 @@ class Userrepository extends BaseRepository  implements UserRepositoryInterface{
         $this->model = $model;
     }
 
-    public function getAllPaginate(){
-        return User::paginate(15);
-    }
+  
   
 
     

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            // $table->integer('user_catalogue_id')->default(2);
+            $table->string('name')->default('Guest');
             $table->string('fullname', 50)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('address', 100)->nullable();
@@ -23,9 +24,11 @@ return new class extends Migration
             $table->dateTime('birthday')->nullable();
             $table->string('image')->nullable();
             $table->string('description')->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 255)->unique()->default('Guest@gmail.com');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('re_password')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

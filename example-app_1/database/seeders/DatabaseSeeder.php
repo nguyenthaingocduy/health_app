@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        DB::table('users')->insert([
-            'name' => 'Test User',
-            'email' => 'duynguyen.11032003@gmail.com',
-            'password' => Hash::make('password'),
+        // DB::table('users')->insert([
+        //     'name' => 'Test User',
+        //     'email' => 'duynguyen.11032003@gmail.com',
+        //     'password' => Hash::make('password'),
             
-        ]);
+        // ]);
 
         $this->call([UserSeeder::class]);
     }

@@ -10,6 +10,10 @@ return [
         'title' => 'Thêm Thành Viên',
         
         ],
+        'delete' => [
+        'title' => 'Xóa Thành Viên',
+        
+        ],
        
 
 ];

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -13,8 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // DB::table('users')->truncate(); xoa tat ca du lieu nguoi dung truoc khi khoi cahy seed
+      
        User::factory()
-       ->count(20000)
+       ->count(100)
        ->create();
     }
 }

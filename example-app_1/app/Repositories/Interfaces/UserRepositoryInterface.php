@@ -8,6 +8,9 @@ namespace App\Repositories\Interfaces;
  */
 interface UserRepositoryInterface
 {   
-   public function getAllPaginate();
+ 
+   public function findById(int $modelId);
    public function create(array $data);
+   public function update(int $id, array $payload);
+   public function delete(int $id);
 }

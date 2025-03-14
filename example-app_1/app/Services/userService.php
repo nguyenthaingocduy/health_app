@@ -23,7 +23,12 @@ class userService implements userServiceInterface
         $this -> userRepository = $userRepository;
     }
     public function paginate(){
-        $users = $this->userRepository->getAllPaginate();
+        $users = $this->userRepository->pagination(['id', 
+        'email', 
+        'phone', 
+        'address', 
+        'name',
+    'publish']);
         return $users;
     }
     public function create($request){
@@ -31,12 +36,11 @@ class userService implements userServiceInterface
         try{
 
             $payload = $request->except(['_token', 'send','re-password']);
-            $carbonDate = Carbon::createFromFormat('d/m/Y', $payload['birthday']);
-            $payload['birthday'] = $carbonDate->format('Y-m-d H:i:s');
+            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
             $payload['password'] = Hash::make($payload['password']);
-
+      
             $user = $this->userRepository->create($payload);
-
+   
             DB::commit();
             return true;
         }catch(\Exception $e){
@@ -45,6 +49,47 @@ class userService implements userServiceInterface
             echo $e->getMessage();die();
             return false;
         }
+    }
+
+
+    public function update($id, $request){
+        DB::beginTransaction();
+        try{
+           
+            $payload = $request->except(['_token', 'send']);
+            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+      
+            $user = $this->userRepository->update($id, $payload);
+   
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollBack();
+            // Log::error($e->getMessage());
+            echo $e->getMessage();die();
+            return false;
+        }
+    }
+
+    public function destroy($id){
+        DB::beginTransaction();
+        try{
+           
+            $user = $this->userRepository->delete($id);
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollBack();
+            // Log::error($e->getMessage());
+            echo $e->getMessage();die();
+            return false;
+        }
+    }
+
+    private function convertBirthdayDate($birthday = ''){
+        $carbonDate = Carbon::createFromFormat('Y-m-d', $birthday);
+        $birthday= $carbonDate->format('Y-m-d H:i:s');
+        return $birthday;
     }
     
 }
