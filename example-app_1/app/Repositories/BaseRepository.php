@@ -14,13 +14,18 @@ class BaseRepository implements BaseRepositoryInterface{
         $this->model = $model;
     }
 
-    public function pagination($column = ['*'], $condition = [], $join = [], $perpage = 20){
-     $query = $this->model->select($column)
-        ->where($condition);
+    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1){
+        $query = $this->model->select(is_array($column) ? $column : ['*'])
+        ->where(function($query) use ($condition){
+            if(isset($condition['keyword']) && !empty($condition['keyword'])){
+                $query->where('name', 'LIKE', '%'.$condition['keyword'].'%'); 
+            }
+        });
         if(!empty($join)){
             $query->join(...$join);
         }
-        return $query->paginate($perpage);
+        return $query->paginate($perPage)
+                    ->withQueryString()->withPath(url($extend['path']));
     }
 
     public function create(array $payload = []){
