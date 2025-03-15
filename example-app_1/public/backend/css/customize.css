@@ -148,3 +148,13 @@ table strong {
 .form-control {
   height: 31px;  
 } 
+
+.active-bg {
+    background: #ffc !important;
+}
+#checkAll,
+.checkboxItem {
+    width: 15px;
+    height: 15px;
+    /* color: pink !important; */
+}
