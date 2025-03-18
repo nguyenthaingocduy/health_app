@@ -2,25 +2,25 @@
 
 namespace App\Services;
 
-use App\Services\Interfaces\userServiceInterface;
+use App\Services\Interfaces\userCatalogueServiceInterface;
 use App\Models\User;
-use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
+use App\Repositories\Interfaces\UserCatalogueRepositoryInterface as UserCatalogueRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Class userService
+ * Class userCatalogueService
  * @package App\Services
  */
-class userService implements userServiceInterface
+class userCatalogueService implements userCatalogueServiceInterface
 
 {
-    protected $userRepository;
-    public function __construct(UserRepository $userRepository ) 
+    protected $userCatalogueRepository;
+    public function __construct(UserCatalogueRepository $userCatalogueRepository ) 
     {
-        $this -> userRepository = $userRepository;
+        $this -> userCatalogueRepository = $userCatalogueRepository;
     }
 
 
@@ -29,7 +29,7 @@ class userService implements userServiceInterface
 
         $condition['keyword'] = addslashes($request->input('keyword'));
         $perPage = $request->integer('perpage');
-        $users = $this->userRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'user/index'], $perPage);
+        $users = $this->userCatalogueRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'user/index'], $perPage);
         return $users;
     }
     public function create($request){
@@ -40,7 +40,7 @@ class userService implements userServiceInterface
             $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
             $payload['password'] = Hash::make($payload['password']);
       
-            $user = $this->userRepository->create($payload);
+            $user = $this->userCatalogueRepository->create($payload);
    
             DB::commit();
             return true;
@@ -60,7 +60,7 @@ class userService implements userServiceInterface
             $payload = $request->except(['_token', 'send']);
             $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
       
-            $user = $this->userRepository->update($id, $payload);
+            $user = $this->userCatalogueRepository->update($id, $payload);
    
             DB::commit();
             return true;
@@ -76,7 +76,7 @@ class userService implements userServiceInterface
         DB::beginTransaction();
         try{
            
-            $user = $this->userRepository->delete($id);
+            $user = $this->userCatalogueRepository->delete($id);
             DB::commit();
             return true;
         }catch(\Exception $e){
@@ -93,7 +93,7 @@ class userService implements userServiceInterface
         try{
            
             $payload[$post['field']] =  (($post['value'] == 1) ? 0 : 1);
-            $user = $this->userRepository->update($post['modelId'], $payload);
+            $user = $this->userCatalogueRepository->update($post['modelId'], $payload);
        
             DB::commit();
             return true;
@@ -113,7 +113,7 @@ class userService implements userServiceInterface
         try{
            
             $payload[$post['field']] =  $post['value'];
-           $flag =  $this->userRepository->updateByWhereIn('id', $post['id'], $payload);
+           $flag =  $this->userCatalogueRepository->updateByWhereIn('id', $post['id'], $payload);
        
             DB::commit();
             return true;

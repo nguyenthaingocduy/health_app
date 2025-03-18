@@ -15,7 +15,7 @@
        @if(isset($users) && is_object($users))
             @foreach ($users as $user)
     <tr>
-        <td><input type="checkbox" value="" class="checkboxItem input-checkbox"></td>
+        <td><input type="checkbox" value="{{ $user->id }}" class="checkboxItem input-checkbox"></td>
         <td>
            {{ $user->name }}
         </td>
@@ -28,7 +28,7 @@
         <td> 
            {{ $user->address }}
         </td>
-        <td class="text-center"> 
+        <td class="text-center js-switch-{{ $user->id }}"> 
 
             <input type="checkbox" value="{{ $user->publish }}" class="js-switch status" data-field="publish" data-model="User" {{ ($user->publish == 1) ? 'checked' : '' }} data-modelId = {{ $user->id }} />
         </td>

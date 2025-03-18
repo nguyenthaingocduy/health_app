@@ -15,8 +15,8 @@
             </div>
             <div class="action">
     
-                <div class="uk-flex uk-flex-middle">
-                    <select name="user-catalogue_id" class="form-control mr10 mb0 mt5 setupSelect2">
+                <div class="uk-flex uk-flex-middle" style="gap: 20px">
+                    <select name="user-catalogue_id" class="form-control  mb0 mt15 ml10 setupSelect2">
                         <option value="0" selected="selected">Chọn nhóm thành viên</option>
                         <option value="1">Quản trị viên</option>
                     </select>

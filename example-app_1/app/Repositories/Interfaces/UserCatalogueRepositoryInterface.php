@@ -6,7 +6,7 @@ namespace App\Repositories\Interfaces;
  * Interface userServiceInterface
  * @package App\Services\Interfaces
  */
-interface UserRepositoryInterface
+interface UserCatalogueRepositoryInterface
 {   
  
    public function findById(int $modelId);
@@ -14,5 +14,6 @@ interface UserRepositoryInterface
    public function update(int $id, array $payload);
    public function delete(int $id);
    public function updateByWhereIn(string $whereInField = '', array $whereIn, array $payload);
+   public function getAll();
 
 }

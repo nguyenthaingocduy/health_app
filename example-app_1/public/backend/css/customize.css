@@ -15,6 +15,9 @@ input::placeholder {
 .mt20 {
     margin-top: 20px;
 }
+.mt15 {
+    margin-top: 15px;
+}
 .mb0 {
     margin-bottom: 0;
 }
@@ -32,6 +35,10 @@ input::placeholder {
 }
 .mb15 {
     margin-bottom: 15px;
+}
+
+.ml10{
+    margin-left: 10px;
 }
 h5 {
     text-transform: uppercase;
@@ -144,7 +151,10 @@ table strong {
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 34px !important;
     font-size: 13px;
+  
 }
+
+
 .form-control {
   height: 31px;  
 } 
@@ -156,5 +166,16 @@ table strong {
 .checkboxItem {
     width: 15px;
     height: 15px;
-    /* color: pink !important; */
+  
+}
+
+
+.switchery-small {
+    border-radius: 20px;
+    height: 20px;
+    width: 33px;
+}
+.switchery-small>small {
+    height: 20px;
+    width: 20px;
 }
