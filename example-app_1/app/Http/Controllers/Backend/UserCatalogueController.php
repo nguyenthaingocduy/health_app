@@ -15,7 +15,6 @@ use App\Http\Requests\StoreUserCatalogueRequest;
 use App\Http\Requests\UpdateUserRequest;
 
 
-
 class UserCatalogueController extends Controller
 
 {

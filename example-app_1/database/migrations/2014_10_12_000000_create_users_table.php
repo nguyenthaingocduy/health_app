@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('email', 255)->unique()->default('Guest@gmail.com');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default('default_password');
             $table->string('re_password')->nullable();
 
             $table->rememberToken();
