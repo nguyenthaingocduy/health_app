@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Services\Interfaces\userCatalogueServiceInterface;
 use App\Models\User;
 use App\Repositories\Interfaces\UserCatalogueRepositoryInterface as UserCatalogueRepository;
+use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
@@ -18,15 +20,17 @@ class userCatalogueService implements userCatalogueServiceInterface
 
 {
     protected $userCatalogueRepository;
-    public function __construct(UserCatalogueRepository $userCatalogueRepository ) 
+    protected $userRepository;
+
+    public function __construct(UserCatalogueRepository $userCatalogueRepository, UserRepository $userRepository ) 
     {
         $this -> userCatalogueRepository = $userCatalogueRepository;
+        $this -> userRepository = $userRepository;
     }
 
 
 
     public function paginate($request){
-
         $condition['keyword'] = addslashes($request->input('keyword'));
         $perPage = $request->integer('perpage');
         $users = $this->userCatalogueRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'user/index'], $perPage);
@@ -36,9 +40,7 @@ class userCatalogueService implements userCatalogueServiceInterface
         DB::beginTransaction();
         try{
 
-            $payload = $request->except(['_token', 'send','re-password']);
-            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
-            $payload['password'] = Hash::make($payload['password']);
+            $payload = $request->except(['_token', 'send']);
       
             $user = $this->userCatalogueRepository->create($payload);
    
@@ -58,7 +60,6 @@ class userCatalogueService implements userCatalogueServiceInterface
         try{
            
             $payload = $request->except(['_token', 'send']);
-            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
       
             $user = $this->userCatalogueRepository->update($id, $payload);
    
@@ -94,6 +95,7 @@ class userCatalogueService implements userCatalogueServiceInterface
            
             $payload[$post['field']] =  (($post['value'] == 1) ? 0 : 1);
             $user = $this->userCatalogueRepository->update($post['modelId'], $payload);
+            $this->changeUserStatus($post,  $payload[$post['field']]);
        
             DB::commit();
             return true;
@@ -114,7 +116,30 @@ class userCatalogueService implements userCatalogueServiceInterface
            
             $payload[$post['field']] =  $post['value'];
            $flag =  $this->userCatalogueRepository->updateByWhereIn('id', $post['id'], $payload);
+            $this->changeUserStatus($post, $post['value']);
        
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollBack();
+            // Log::error($e->getMessage());
+            echo $e->getMessage();die();
+            return false;
+        }
+    }
+
+    private function changeUserStatus($post, $value){
+        DB::beginTransaction();
+        try{
+            $array = [];
+            if(isset($post['modelId'])){
+                $array[] = $post['modelId'];
+            }else {
+                $array = $post['id'];
+            }
+            $payload[$post['field']] = $value;
+            $this->userRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
+
             DB::commit();
             return true;
         }catch(\Exception $e){
@@ -134,11 +159,10 @@ class userCatalogueService implements userCatalogueServiceInterface
     private function paginateSelect(){
         return [
             'id', 
-            'email', 
-            'phone', 
-            'address', 
             'name',
-        'publish'];
+            'description',
+            'publish'
+        ];
     }
     
 }

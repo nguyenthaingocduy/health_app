@@ -16,10 +16,10 @@
             <div class="action">
     
                 <div class="uk-flex uk-flex-middle" style="gap: 20px">
-                    <select name="user-catalogue_id" class="form-control  mb0 mt15 ml10 setupSelect2">
+                    {{-- <select name="user-catalogue_id" class="form-control  mb0 mt15 ml10 setupSelect2">
                         <option value="0" selected="selected">Chọn nhóm thành viên</option>
                         <option value="1">Quản trị viên</option>
-                    </select>
+                    </select> --}}
                     <div class="uk-search uk-flex uk-flex-middle mr10 mb0">
                         <div class="input-group">
                             <input type="text" name="keyword" value="{{ request('keyword') ?: old('keyword') }}" class="form-control" placeholder="Tìm kiếm...">

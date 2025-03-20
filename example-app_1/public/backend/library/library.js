@@ -37,9 +37,12 @@
                     
                     dataType: 'json',
                    
-                  
+                    
                     success: function (response) {
-                        console.log(response)
+                        let inputValue =  ((option.value == 1) ? 0 : 1)
+                       if(response.flag == true){
+                            _this.val(inputValue)
+                       }
                     },
                     
                     error: function(jqXHR, textStatus, errorThrown){

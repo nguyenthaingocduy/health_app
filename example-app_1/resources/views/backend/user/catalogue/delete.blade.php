@@ -13,7 +13,7 @@
 
 
 
-<form action="{{ route('user.destroy', $user->id) }}" method="post" class="box">
+<form action="{{ route('user.catalogue.destroy', $userCatalogue->id) }}" method="post" class="box">
     @csrf
     @method('DELETE')
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -22,7 +22,7 @@
                 <div class="panel-head">
                     <div class="panel-title">Thông tin chung</div>
                     <div class="panel-description">
-                        <p>- Bạn muốn xóa thành viên có email là: {{ $user->email }}</p>
+                        <p>- Bạn muốn xóa nhóm thành viên có tên là: {{ $userCatalogue->name }}</p>
                         <p>- Lưu ý: Không thể khôi phục thành viên khi đã xóa. Hãy chắc chắn bạn muốn thực hiện chức năng này <span class="text-danger">(*)</span> là bắt buộc</p>
                     </div>
                 </div>
@@ -30,33 +30,22 @@
             <div class="col-lg-7">
                 <div class="ibox">
                 
-            <div class="ibox-content">
-                <div class="row mb15">
-                    <div class="col-lg-6">
-                        <div class="form-row">
-                            <label for="" class="control-label text-left">Email <span class="text-danger">(*)</span></label>
-                            <input type="text" class="form-control" name="email" id="email" value="{{ old('email', ($user->email) ?? '') }}"
-                                        placeholder="Nhập email" autocomplete="off" readonly>
-                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-row">
-                            <label for="" class="control-label text-left">Họ và tên: <span class="text-danger">(*)</span></label>
-                            <input type="text" class="form-control" name="name"  value="{{ old('name', ($user->name) ?? '' ) }}"
-                                        placeholder="Nhập họ và tên" autocomplete="off" readonly>
-                    </div>
-                    </div>
-        </div>
-        @php
-            $userCatalogue = [
-                '[Chọn nhóm thành viên]',
-                'Quản trị viên',
-                'Cộng tác viên'
-            ]
-        @endphp
+                    <div class="ibox-content">
+                        <div class="row mb15">
+                            <div class="col-lg-12">
+                                <div class="form-row">
+                                    <label for="" class="control-label text-left">Tên nhóm <span class="text-danger">(*)</span></label>
+                                    <input type="text" class="form-control" name="name" value="{{ old('name', ($userCatalogue->name) ?? '') }}"
+                                                placeholder="Nhập tên nhóm" autocomplete="off" readonly>
+                            </div>
+                            </div>
 
-  
-        </div>
+                </div>
+            
+        
+         
+        
+            </div>
     </div>
     
     </div>

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         // DB::table('users')->truncate(); xoa tat ca du lieu nguoi dung truoc khi khoi cahy seed
       
        User::factory()
-       ->count(100)
+       ->count(10)
        ->create();
     }
 }

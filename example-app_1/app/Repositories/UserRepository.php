@@ -23,7 +23,7 @@ class UserRepository extends BaseRepository  implements UserRepositoryInterface{
                 ->orWhere('phone', 'LIKE', '%'.$condition['keyword'].'%');
 
             }
-        });
+        })->with(['user_catalogues']);
         if(!empty($join)){
             $query->join(...$join);
         }

@@ -138,7 +138,8 @@ class userService implements userServiceInterface
             'phone', 
             'address', 
             'name',
-        'publish'];
+        'publish',
+    'user_catalogue_id'];
     }
     
 }
