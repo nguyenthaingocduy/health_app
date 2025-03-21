@@ -156,7 +156,6 @@ class LanguageService implements LanguageServiceInterface
         return [
             'id', 
             'name',
-            'canonical',
             'publish'
         ];
     }
