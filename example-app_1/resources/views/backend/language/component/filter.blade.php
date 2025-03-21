@@ -28,7 +28,7 @@
                             </span>
                         </div>
                     </div>
-                    <a href="{{ route('language.create') }}" class="btn btn-danger btn-sm"><i class="fa fa-plus mr5"></i>Thêm mới nhóm thành viên</a>
+                    <a href="{{ route('language.create') }}" class="btn btn-danger btn-sm"><i class="fa fa-plus mr5"></i>Thêm mới ngôn ngữ</a>
                 </div>
             </div>
         </div>

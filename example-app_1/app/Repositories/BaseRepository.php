@@ -26,6 +26,7 @@ class BaseRepository implements BaseRepositoryInterface{
         }
         return $query->paginate($perPage)
                     ->withQueryString()->withPath(url($extend['path']));
+
     }
 
     public function create(array $payload = []){

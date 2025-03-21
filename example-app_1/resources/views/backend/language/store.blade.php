@@ -42,9 +42,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-row">
-                            <label for="" class="control-label text-left">Ghi chú </label>
+                            <label for="" class="control-label text-left">Canonnical</label>
                             {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $language->description ?? '') }}</textarea> --}}
-                            <input type="text" class="form-control" name="description" value="{{ old('description', ($language->description) ?? '') }}" 
+                            <input type="text" class="form-control" name="canonical" value="{{ old('description', ($language->canonical) ?? '') }}" 
 
                             placeholder="" autocomplete="off">
                     </div>
