@@ -23,14 +23,17 @@ class StoreLanguageRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'canonical' => 'required:unique:languages',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'Bạn chưa nhập tên nhóm thành viên',
-            'name.string' => 'Tên nhóm thành viên phải là dạng ký tự',
+            'name.required' => 'Bạn chưa nhập vào tên ngôn ngữ',
+            'name.string' => 'Tên ngôn ngữ phải là dạng ký tự',
+            'canonical.unique' => 'Tên ngôn ngữ đã tồn tại. Hãy chọn tên ngôn ngữ khác',
+           
         ];
     }
 }

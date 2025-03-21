@@ -13,7 +13,9 @@ class Language extends Model
     protected $fillable = [
         'name',
         'canonical',
-        'publish'
+        'publish',
+        'user_id',
+        'image'
     ];
 
     protected $table = 'languages';

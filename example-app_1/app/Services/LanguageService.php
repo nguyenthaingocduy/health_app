@@ -6,7 +6,7 @@ use App\Services\Interfaces\LanguageServiceInterface;
 use App\Models\User;
 use App\Repositories\Interfaces\LanguageRepositoryInterface as LanguageRepository;
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
@@ -41,6 +41,7 @@ class LanguageService implements LanguageServiceInterface
         try{
 
             $payload = $request->except(['_token', 'send']);
+            $payload['user_id'] = Auth::id();
       
             $language = $this->languageRepository->create($payload);
    
