@@ -35,7 +35,7 @@
                 <div class="row mb15">
                     <div class="col-lg-6">
                         <div class="form-row">
-                            <label for="" class="control-label text-left">Tên nhóm <span class="text-danger">(*)</span></label>
+                            <label for="" class="control-label text-left">Tên nhóm thành viên<span class="text-danger">(*)</span></label>
                             <input type="text" class="form-control" name="name" value="{{ old('name', ($userCatalogue->name) ?? '') }}"
                                         placeholder="Nhập tên nhóm" autocomplete="off">
                     </div>
