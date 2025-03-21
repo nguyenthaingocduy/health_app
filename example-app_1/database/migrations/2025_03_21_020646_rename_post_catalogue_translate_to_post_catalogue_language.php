@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('post_catalogue_translate', function (Blueprint $table) {
-            //
+            Schema::rename('post_catalogue_translate', 'post_catalogue_language');
         });
     }
 
@@ -22,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('post_catalogue_translate', function (Blueprint $table) {
-            //
+            Schema::rename('post_catalogue_language', 'post_catalogue_translate');
+            
         });
     }
 };

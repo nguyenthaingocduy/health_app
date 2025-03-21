@@ -53,7 +53,16 @@ Route::group(['prefix' => 'user/catalogue', 'middleware' => AuthenticateMiddlewa
     Route::DELETE('{id}/destroy', [UserCatalogueController::class, 'destroy'])->where(['id'=>'[0-9]+'])->name('user.catalogue.destroy');
 });
 
-
+// USERS language ROUTES
+Route::group(['prefix' => 'language', 'middleware' => AuthenticateMiddleware::class], function () {
+    Route::get('index', [LanguageController::class, 'index'])->name('language.index');
+    Route::get('create', [LanguageController::class, 'create'])->name('language.create');
+    Route::post('store', [LanguageController::class, 'store'])->name('language.store');
+    Route::get('{id}/edit', [LanguageController::class, 'edit'])->where(['id'=>'[0-9]+'])->name('language.edit');
+    Route::post('{id}/update', [LanguageController::class, 'update'])->where(['id'=>'[0-9]+'])->name('language.update');
+    Route::get('{id}/delete', [LanguageController::class, 'delete'])->where(['id'=>'[0-9]+'])->name('language.delete');
+    Route::DELETE('{id}/destroy', [LanguageController::class, 'destroy'])->where(['id'=>'[0-9]+'])->name('language.destroy');
+});
 
 
 // BACKEND ROUTES

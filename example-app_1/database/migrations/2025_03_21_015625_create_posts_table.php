@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->integer('post_catalogue_id')->default(0);
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
             $table->text('album')->nullable();

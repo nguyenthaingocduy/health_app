@@ -34,7 +34,24 @@ return [
                         ]
                 ]
                
-                    ]
+                    ],
+
+                    [
+                        'title' => 'Cấu Hình Chung',
+                        'icon' => 'fa fa-file',
+                        'name' => 'post',
+                        'subModule' => [
+                            [
+                                'title' => 'QL Ngôn Ngữ',
+                                'route' => 'post/catalogue/index',
+                            ],
+                            [
+                                'title' => 'QL Bài Viết',
+                                'route' => 'post/index',
+                                ]
+                        ]
+                       
+                            ],
 
     ]
  
