@@ -8,6 +8,7 @@ use App\Http\Controllers\Ajax\DashboardController as AjaxDashboardController;
 
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserCatalogueController;
+use App\Http\Controllers\Backend\LanguageController;
 
 
 use App\Http\Middleware\AuthenticateMiddleware;

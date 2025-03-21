@@ -33,8 +33,8 @@ class LanguageService implements LanguageServiceInterface
     public function paginate($request){
         $condition['keyword'] = addslashes($request->input('keyword'));
         $perPage = $request->integer('perpage');
-        $users = $this->languageRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'user/index'], $perPage);
-        return $users;
+        $languages = $this->languageRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'language/index'], $perPage);
+        return $languages;
     }
     public function create($request){
         DB::beginTransaction();
@@ -42,7 +42,7 @@ class LanguageService implements LanguageServiceInterface
 
             $payload = $request->except(['_token', 'send']);
       
-            $user = $this->languageRepository->create($payload);
+            $language = $this->languageRepository->create($payload);
    
             DB::commit();
             return true;
@@ -61,7 +61,7 @@ class LanguageService implements LanguageServiceInterface
            
             $payload = $request->except(['_token', 'send']);
       
-            $user = $this->languageRepository->update($id, $payload);
+            $language = $this->languageRepository->update($id, $payload);
    
             DB::commit();
             return true;
@@ -77,7 +77,7 @@ class LanguageService implements LanguageServiceInterface
         DB::beginTransaction();
         try{
            
-            $user = $this->languageRepository->delete($id);
+            $language = $this->languageRepository->delete($id);
             DB::commit();
             return true;
         }catch(\Exception $e){
@@ -94,7 +94,7 @@ class LanguageService implements LanguageServiceInterface
         try{
            
             $payload[$post['field']] =  (($post['value'] == 1) ? 0 : 1);
-            $user = $this->languageRepository->update($post['modelId'], $payload);
+            $language = $this->languageRepository->update($post['modelId'], $payload);
             // $this->changeUserStatus($post,  $payload[$post['field']]);
        
             DB::commit();
@@ -138,7 +138,7 @@ class LanguageService implements LanguageServiceInterface
     //             $array = $post['id'];
     //         }
     //         $payload[$post['field']] = $value;
-    //         $this->languageRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
+    //         $this->LanguageRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
 
     //         DB::commit();
     //         return true;
@@ -156,7 +156,7 @@ class LanguageService implements LanguageServiceInterface
         return [
             'id', 
             'name',
-            'description',
+            'canonical',
             'publish'
         ];
     }
