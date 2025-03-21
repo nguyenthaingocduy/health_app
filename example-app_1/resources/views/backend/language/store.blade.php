@@ -44,12 +44,32 @@
                         <div class="form-row">
                             <label for="" class="control-label text-left">Canonnical</label>
                             {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $language->description ?? '') }}</textarea> --}}
-                            <input type="text" class="form-control" name="canonical" value="{{ old('description', ($language->canonical) ?? '') }}" 
+                            <input type="text" class="form-control" name="canonical" value="{{ old('canonical', ($language->canonical) ?? '') }}" 
 
                             placeholder="" autocomplete="off">
                     </div>
                     </div>
         </div>
+        <div class="row mb15">
+            <div class="col-lg-6">
+                <div class="form-row">
+                    <label for="" class="control-label text-left">Ảnh đại diện</label>
+                    {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $language->description ?? '') }}</textarea> --}}
+                    <input type="text" class="form-control" name="image" value="{{ old('image', ($language->image) ?? '') }}" 
+
+                    placeholder="" autocomplete="off">
+            </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-row">
+                    <label for="" class="control-label text-left">Ghi chú</label>
+                    {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $language->description ?? '') }}</textarea> --}}
+                    <input type="text" class="form-control" name="description" value="{{ old('description', ($language->description) ?? '') }}" 
+
+                    placeholder="" autocomplete="off">
+            </div>
+            </div>
+</div>
     
 
  
