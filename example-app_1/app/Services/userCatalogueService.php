@@ -156,7 +156,7 @@ class userCatalogueService implements userCatalogueServiceInterface
         return [
             'id', 
             'name',
-            // 'canonical',
+            'description',
             'publish'
         ];
     }
