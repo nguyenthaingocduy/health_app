@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Language;
 use Database\Seeders\UserSeeder;
 use App\Services\Interfaces\LanguageServiceInterface as LanguageService;
 
@@ -12,7 +12,7 @@ use App\Services\Interfaces\LanguageServiceInterface as LanguageService;
 use App\Repositories\Interfaces\LanguageRepositoryInterface as LanguageRepository;
 use App\Http\Requests\StoreLanguageRequest;
 
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateLanguageRequest;
 
 
 class LanguageController extends Controller
@@ -71,7 +71,7 @@ class LanguageController extends Controller
         $template = 'backend.language.store';
         return view('backend.dashboard.layout', compact('template','config','language'));
     }
-    public function update($id, StoreLanguageRequest $request){
+    public function update($id, UpdateLanguageRequest $request){
         if($this->languageService->update($id, $request)){
             return redirect()->route('language.index')->with('success', 'Cập nhật bản ghi thành công');
         }
@@ -79,7 +79,7 @@ class LanguageController extends Controller
     }
 
     public function delete($id){
-        $config['seo'] = config('apps.Language');
+        $config['seo'] = config('apps.language');
 
         $language = $this->languageRepository->findById($id);
 

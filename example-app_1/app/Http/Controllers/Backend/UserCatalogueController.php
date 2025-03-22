@@ -12,7 +12,7 @@ use App\Services\Interfaces\userCatalogueServiceInterface as UserCatalogueServic
 use App\Repositories\Interfaces\UserCatalogueRepositoryInterface as UserCatalogueRepository;
 use App\Http\Requests\StoreUserCatalogueRequest;
 
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateUserCatalogueRequest;
 
 
 class UserCatalogueController extends Controller
@@ -71,7 +71,7 @@ class UserCatalogueController extends Controller
         $template = 'backend.user.catalogue.store';
         return view('backend.dashboard.layout', compact('template','config','userCatalogue'));
     }
-    public function update($id, StoreUserCatalogueRequest $request){
+    public function update($id, UpdateUserCatalogueRequest $request){
         if($this->userCatalogueService->update($id, $request)){
             return redirect()->route('user.catalogue.index')->with('success', 'Cập nhật bản ghi thành công');
         }

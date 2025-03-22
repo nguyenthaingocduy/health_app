@@ -78,7 +78,7 @@ class LanguageService implements LanguageServiceInterface
         DB::beginTransaction();
         try{
            
-            $language = $this->languageRepository->delete($id);
+            $language = $this->languageRepository->forceDelete($id);
             DB::commit();
             return true;
         }catch(\Exception $e){
@@ -157,6 +157,7 @@ class LanguageService implements LanguageServiceInterface
         return [
             'id', 
             'name',
+            'canonical',
             'publish'
         ];
     }

@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories;
-use App\Models\User;
+use App\Models\Language;
 use App\Repositories\Interfaces\LanguageRepositoryInterface;
 use App\Repositories\BaseRepository;
 
@@ -8,7 +8,7 @@ class LanguageRepository extends BaseRepository  implements LanguageRepositoryIn
 
 
     protected $model;
-    public function __construct(User $model)
+    public function __construct(Language $model)
     {
         $this->model = $model;
     }
