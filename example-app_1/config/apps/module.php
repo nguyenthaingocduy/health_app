@@ -45,10 +45,7 @@ return [
                                 'title' => 'QL Ngôn Ngữ',
                                 'route' => 'language/index',
                             ],
-                            [
-                                'title' => 'QL Bài Viết',
-                                'route' => 'post/index',
-                                ]
+                         
                         ]
                        
                             ],
