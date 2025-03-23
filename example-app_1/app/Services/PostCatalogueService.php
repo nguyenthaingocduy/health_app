@@ -155,11 +155,16 @@ class PostCatalogueService implements PostCatalogueServiceInterface
 
     private function paginateSelect(){
         return [
-            'id', 
-            'name',
-            'canonical',
-            'publish',
-            'image',
+            'parent_id',
+        'lft',
+        'rgt',
+        'level',
+        'image',
+        'icon',
+        'album',
+        'publish',
+        'order',
+        'user_id',
         ];
     }
     

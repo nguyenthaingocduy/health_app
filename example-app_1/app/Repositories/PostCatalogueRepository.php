@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
-use App\Models\Language;
+
+use App\Models\PostCatalogue;
 use App\Repositories\Interfaces\PostCatalogueRepositoryInterface;
 use App\Repositories\BaseRepository;
 
