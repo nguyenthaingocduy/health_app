@@ -49,6 +49,20 @@ return [
                         ]
                        
                             ],
+                            [
+                                'title' => 'QL Bài Đăng',
+                                'icon' => 'fa fa-file',
+                                'name' => ['post'],
+                                'subModule' => [
+                                    [
+                                        'title' => 'QL Nhóm Bài Đăng',
+                                        'route' => 'post/catalogue/index',
+                                       
+                                    ],
+                                 
+                                ]
+                               
+                                    ],
 
     ]
  
