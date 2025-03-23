@@ -31,7 +31,7 @@
                 @include('backend.post.catalogue.component.seo')
             </div>
             <div class="col-lg-3">
-                <div class="ibox">
+        <div class="ibox">
                 
             <div class="ibox-content">
                 <div class="row mb15">
@@ -45,16 +45,60 @@
                                 <option value="2">...</option>
                                 
                             </select>
-                    </div>
+                        </div>
                     </div>
             
+                </div>
+
+            </div>
         </div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Chọn ảnh đại diện</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row mb15">
+                    <div class="col-lg-12">
+                        <div class="form-row">
+                            <span class="image img-cover"><img src="backend/img/no_img.jpg" alt=""></span>
+                            <input type="hidden" name="image" value="">
+                          
+                        </div>
+                    </div>
+            
+                </div>
 
-    
+            </div>
+        </div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Chọn tình trạng</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row mb15">
+                    <div class="col-lg-12">
+                        <div class="form-row">
+                            <select name="" class="form-control setupSelect2">
+                                @foreach (config('apps.general.publish') as $key => $val)
+                                    <option value="{{ $key }}">{{ $val }}</option>
+                                    
+                                @endforeach
+                                
+                            </select>
+                          
+                        </div>
+                        <select name="" class="form-control setupSelect2">
+                            @foreach (config('apps.general.follow') as $key => $val)
+                                <option value="{{ $key }}">{{ $val }}</option>
+                                
+                            @endforeach
+                            
+                        </select>
+                    </div>
+            
+                </div>
 
- 
-
-    </div>
+            </div>
         </div>
     </div>
     
