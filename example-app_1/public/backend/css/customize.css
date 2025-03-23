@@ -44,6 +44,11 @@ h5 {
     text-transform: uppercase;
     font-weight: normal;
 }
+table .image {
+    height: 60px;
+    display: block;
+    margin: 0 5px;
+}
 
 table .img-cover{
     height: 75px;

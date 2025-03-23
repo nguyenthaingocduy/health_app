@@ -55,9 +55,9 @@
                 <div class="form-row">
                     <label for="" class="control-label text-left">Ảnh đại diện</label>
                     {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $language->description ?? '') }}</textarea> --}}
-                    <input type="text" class="form-control" name="image" value="{{ old('image', ($language->image) ?? '') }}" 
+                    <input type="text" class="form-control upload-image" name="image" value="{{ old('image', ($language->image) ?? '') }}" 
 
-                    placeholder="" autocomplete="off">
+                    placeholder="" autocomplete="off" data-type="Images">
             </div>
             </div>
             <div class="col-lg-6">

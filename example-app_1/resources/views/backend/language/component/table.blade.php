@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th> <input type="checkbox" value="" id="checkAll" class="input-checkbox"> </th>
+        <th style="width: 100px">Ảnh</th>
         <th >Tên ngôn ngữ</th>
         <th>Canonical</th>
         <th>Mô tả</th>
@@ -15,6 +16,9 @@
             @foreach ($languages as $language)
     <tr>
         <td><input type="checkbox" value="{{ $language->id }}" class="checkboxItem input-checkbox"></td>
+        <td>
+            <span class="image img-cover"><img src="{{ $language->image }}" alt=""></span>
+        </td>
         <td>
            {{ $language->name }}
         </td>
