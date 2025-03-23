@@ -28,7 +28,7 @@
                             </span>
                         </div>
                     </div>
-                    <a href="{{ route('post.catalogue.create') }}" class="btn btn-danger btn-sm"><i class="fa fa-plus mr5"></i>Thêm mới ngôn ngữ</a>
+                    <a href="{{ route('post.catalogue.create') }}" class="btn btn-danger btn-sm"><i class="fa fa-plus mr5"></i>Thêm mới nhóm bài viết</a>
                 </div>
             </div>
         </div>

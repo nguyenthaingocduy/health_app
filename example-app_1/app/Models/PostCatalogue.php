@@ -11,6 +11,7 @@ class PostCatalogue extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        // 'name',
         'parent_id',
         'lft',
         'rgt',
@@ -23,6 +24,7 @@ class PostCatalogue extends Model
         'user_id',
     ];
 
-    protected $table = 'postCatalogues';
+    protected $table = 'post_catalogues';
+
  
 }
