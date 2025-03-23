@@ -184,3 +184,31 @@ table strong {
     height: 20px;
     width: 20px;
 }
+
+.meta-title {
+    font-size: 20px;
+    color: #1a0dab;
+}
+
+.canonical {
+    color: green;
+    margin-bottom: 8px;
+}
+.meta-description {
+    font-size: 15px;
+    color: #1a1a1a;
+}
+.seo-wrapper {
+    margin-top: 30px;
+}
+
+.seo-wrapper textarea {
+    height: 200px !important;
+}
+
+.notice {
+    font-size: 11px;
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}

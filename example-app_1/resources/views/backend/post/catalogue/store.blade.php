@@ -19,36 +19,35 @@
     @csrf
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-lg-5">
-                <div class="panel-head">
-                    <div class="panel-title">Thông tin chung</div>
-                    <div class="panel-description">
-                        <p>- Nhập thông tin chung của ngôn ngữ</p>
-                        <p>- Lưu ý: Những trường đánh dấu <span class="text-danger">(*)</span> là bắt buộc</p>
+            <div class="col-lg-9">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Thông tin chung</h5>
                     </div>
-                </div>
+                    <div class="ibox-content">
+                        @include('backend.post.catalogue.component.general')
+                    </div>
+                </div> 
+                @include('backend.post.catalogue.component.seo')
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-3">
                 <div class="ibox">
                 
             <div class="ibox-content">
                 <div class="row mb15">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-row">
-                            <label for="" class="control-label text-left">Tên nhóm <span class="text-danger">(*)</span></label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name', ($postCatalogue->name) ?? '') }}"
-                                        placeholder="Nhập tên nhóm" autocomplete="off">
+                            <label for="" class="control-label text-left">Chọn danh mục cha<span class="text-danger">(*)</span></label>
+                            <span class="text-danger notice ">*Chọn root nếu không có danh mục cha</span>
+                            <select name="" class="form-control setupSelect2">
+                                <option value="0">Chọn danh mục cha</option>
+                                <option value="1">Root</option>
+                                <option value="2">...</option>
+                                
+                            </select>
                     </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-row">
-                            <label for="" class="control-label text-left">Canonnical</label>
-                            {{-- <textarea class="form-control" name="description" placeholder="" autocomplete="off">{{ old('description', $postCatalogue->description ?? '') }}</textarea> --}}
-                            <input type="text" class="form-control" name="canonical" value="{{ old('canonical', ($postCatalogue->canonical) ?? '') }}" 
-
-                            placeholder="" autocomplete="off">
-                    </div>
-                    </div>
+            
         </div>
 
     
