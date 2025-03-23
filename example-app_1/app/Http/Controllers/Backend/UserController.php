@@ -54,14 +54,7 @@ class UserController extends Controller
         $provinces = $this->ProvinceRepository->all();
   
 
-        $config = [
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                'backend/library/location.js',
-              
-            ],
-            'css' => ['https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css']
-        ];
+        $config = $this->config();
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
         $template = 'backend.user.user.store';
@@ -77,14 +70,7 @@ class UserController extends Controller
     public function edit($id){
         $user = $this->userRepository->findById($id);
         $provinces = $this->ProvinceRepository->all();
-        $config = [
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                'backend/library/location.js',
-              
-            ],
-            'css' => ['https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css']
-        ];
+        $config = $this->config();
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
         $template = 'backend.user.user.store';
@@ -110,6 +96,20 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('success', 'Xóa bản ghi thành công');
         }
         return redirect()->route('user.index')->with('error', 'Xóa bản ghi không thành công. Hãy thử lại');
+    }
+
+    private function config(){
+        $config = [
+            'js' => [
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+                'backend/library/location.js',
+                'backend/plugin/ckfinder_2/ckfinder/ckfinder.js',
+                'backend/library/finder.js',
+              
+            ],
+            'css' => ['https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css']
+        ];
+      
     }
 
 
