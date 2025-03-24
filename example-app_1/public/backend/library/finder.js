@@ -3,10 +3,11 @@
     var HT = {};
 
     HT.setupCKEditor = () => {
-         if($('.ckeditor')){
-            $('.ckeditor').each(function(){
+         if($('.ck-editor')){
+            $('.ck-editor').each(function(){
                let editor = $(this);
-               HT.ckeditor4(editor);
+               let elementId = editor.attr('id');
+               HT.ckeditor4(elementId);
             })
     }
 }
@@ -28,6 +29,9 @@
             {name: 'colors'},
             {name: 'others'},
             '/',
+            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi']},
+            {name: 'styles'},
 
 
             ]

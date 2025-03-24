@@ -61,7 +61,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 // $baseUrl = '/ckfinder/userfiles/';
-$baseUrl = 'public/userfiles/';
+$baseUrl = '/public/userfiles/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the

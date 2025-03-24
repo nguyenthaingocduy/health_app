@@ -1,5 +1,5 @@
 <head>
-    <base href= "http://localhost:8000/public">
+    <base href= "{{ config('app.url') }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,4 +24,9 @@
     <script src="backend/js/jquery-3.1.1.min.js"></script>
     <link href="backend/css/plugins/switchery/switchery.css" rel="stylesheet">
 </head>
+
+
+<script>
+    var BASE_URL = '{{ config('app.url') }}';
+</script>
 
