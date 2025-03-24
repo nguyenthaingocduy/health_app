@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="form-row">
             <label for="" class="control-label text-left">Tiêu đề  nhóm bài viết<span class="text-danger">(*)</span></label>
-            <input type="text" class="form-control" name="title" value="{{ old('title', ($postCatalogue->title) ?? '') }}"
+            <input type="text" class="form-control" name="name" value="{{ old('name', ($postCatalogue->name) ?? '') }}"
                 placeholder="Nhập tiêu đề nhóm bài viết" autocomplete="off">
         </div>
     </div>
@@ -19,7 +19,7 @@
 <div class="row mb15">
     <div class="col-lg-12">
         <div class="form-row">
-            <label for="" class="control-label text-left">Nội dung<span class="text-danger">(*)</span></label>
+            <label for="" class="control-label text-left">Nội dung</label>
             <textarea type="text" class="form-control ck-editor" name="content" value="{{ old('content', ($postCatalogue->content) ?? '') }}"
                 placeholder="" autocomplete="off" id="ckContent" data-height="500"></textarea>
         </div>

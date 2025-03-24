@@ -37,7 +37,7 @@
     </div>
     <hr>
 
-        <div class="text-right mb15">
+        <div class="text-right mb15 button-fix">
             <button type="submit" value="send" name="send" class="btn btn-primary">Lưu lại</button>
            
         </div>

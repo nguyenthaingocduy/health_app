@@ -10,4 +10,7 @@
             '1' => 'Không theo dõi',
             '2' => 'Theo dõi',
         ],
+        'suffix' => 
+            '.html',
+        
     ];

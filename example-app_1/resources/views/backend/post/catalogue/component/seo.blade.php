@@ -5,9 +5,9 @@
     </div>
     <div class="ibox-content">
         <div class="seo-container">
-            <div class="meta-title">Bệnh Viện Thẩm mỹ ABC - BV chuẩn Hàn tại Việt Nam</div>
-            <div class="canonical">http://localhost:8000/thammyvienABC.com</div>
-            <div class="meta-description">Bệnh viện thẩm mỹ ABC BV chuẩn Hàn đẳng cấp 5 ⭐ hàng đầu tại Việt Nam 100% Bác sĩ là thành viên Hiệp hội thẩm mỹ HQ.</div>
+            <div class="meta-title">Bạn chưa có tiêu đề SEO</div>
+            <div class="canonical">http://duong-dan-cua-ban.html</div>
+            <div class="meta-description">Bạn chưa có mô tả SEO</div>
         </div>
         <div class="seo-wrapper">
             <div class="row mb15">
@@ -19,7 +19,7 @@
                             <span class="count_meta-title">0 ký tự</span>
                          </div>
                         </label>
-                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title', ($postCatalogue->meta_title) ?? '') }}"
+                        <input type="text" class="form-control" name="name" value="{{ old('name', ($postCatalogue->name) ?? '') }}"
                         placeholder="" autocomplete="off">
  
                     </div>
