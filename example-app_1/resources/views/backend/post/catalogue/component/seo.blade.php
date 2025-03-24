@@ -67,8 +67,11 @@
                             <span class="count_meta-description">0 ký tự</span>
                          </div>
                         </label>
+                       <div class="input-wrapper">
                         <input type="text" class="form-control" name="canonical" value="{{ old('canonical', ($postCatalogue->canonical) ?? '') }}"
                         placeholder="" autocomplete="off"> 
+                        <span class="baseURL">{{ config('app.url') }}</span>
+                       </div>
  
                     </div>
                 </div>

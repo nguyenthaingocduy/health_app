@@ -27,7 +27,7 @@
         <div class="row mb15">
             <div class="col-lg-12">
                 <div class="form-row">
-                    <span class="image img-cover"><img src="backend/img/no_img.jpg" alt=""></span>
+                    <span class="image img-cover img-target"><img src="backend/img/no_img.jpg" alt=""></span>
                     <input type="hidden" name="image" value="">
                   
                 </div>
