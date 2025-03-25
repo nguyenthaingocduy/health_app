@@ -193,7 +193,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
 
 
     private function payload(){
-        return ['parent_id', 'follow', 'publish', 'image'];
+        return ['parentid', 'publish', 'image'];
     }
     private function payloadLanguage(){
         return ['name', 'description', 'content', 'meta_title', 'meta_description', 'meta_keyword', 'canonical'];

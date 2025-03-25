@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Base;
+use Illuminate\Support\Facades\DB;
 
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +67,9 @@ class BaseRepository implements BaseRepositoryInterface{
 
 
     public function createLanguagePivot($model,array $payload = []){
+        if(is_array($model)) {
+            $model = $this->model->find($model['post_catalogue_id']);
+        }
         return $model->languages()->attach($model->id, $payload);
     }
     

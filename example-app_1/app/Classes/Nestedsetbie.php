@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class Nestedsetbie{
+	protected $params;
+	protected $checked;
+	protected $data;
+	protected $count;
+	protected $count_level;
+	protected $lft;
+	protected $rgt;
+	protected $level;
 
 	function __construct($params = NULL){
 		$this->params = $params;
@@ -19,8 +27,8 @@ class Nestedsetbie{
 	public function Get(){
 		$foreignkey = (isset($this->params['foreignkey'])) ? $this->params['foreignkey'] : 'post_catalogue_id';
 		$moduleExtract = explode('_', $this->params['table']);
-		$result = DB::table($this->params['table'].' as tb1')
-		->select('tb1.id','tb2.name','tb1.parent_id','tb1.lft','tb1.rgt','tb1.level','tb1.order')
+		$result = DB::table($this->params['table'].'s as tb1')
+		->select('tb1.id','tb2.name','tb1.parentid','tb1.lft','tb1.rgt','tb1.level','tb1.order')
 		->join($moduleExtract[0].'_catalogue_language as tb2', 'tb1.id', '=', 'tb2.'.$foreignkey.'')
 		->where('tb2.language_id','=', $this->params['language_id'])->whereNull('tb1.deleted_at')
 		->orderBy('tb1.lft','asc')->get()->toArray();
@@ -31,8 +39,8 @@ class Nestedsetbie{
 		if(isset($this->data) && is_array($this->data)){
 			$arr = NULL;
 			foreach($this->data as $key => $val){
-				$arr[$val->id][$val->parent_id] = 1;
-				$arr[$val->parent_id][$val->id] = 1;
+				$arr[$val->id][$val->parentid] = 1;
+				$arr[$val->parentid][$val->id] = 1;
 			}
 			return $arr;
 		}
@@ -70,7 +78,7 @@ class Nestedsetbie{
 				);
 			}
 			if(isset($data) && is_array($data) && count($data)){
-				DB::table($this->params['table'])->upsert($data, 'id', ['level','lft','rgt']);
+				DB::table($this->params['table'].'s')->upsert($data, 'id', ['level','lft','rgt']);
 			}
 		}
     }
