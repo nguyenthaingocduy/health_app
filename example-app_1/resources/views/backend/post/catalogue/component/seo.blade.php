@@ -51,8 +51,8 @@
                             <span class="count_meta-description">0 ký tự</span>
                          </div>
                         </label>
-                        <textarea type="text" class="form-control" name="meta_description" value="{{ old('meta_description', ($postCatalogue->meta_description) ?? '') }}"
-                        placeholder="" autocomplete="off"> </textarea>
+                        <textarea type="text" class="form-control" name="meta_description"
+                        placeholder="" autocomplete="off">{{ old('meta_description', ($postCatalogue->meta_description) ?? '') }} </textarea>
  
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="form-row">
                         <label for="" class="control-label text-left">
                          <div class="uk-flex uk-flex-middle uk-flex-space-between">
-                            <span>Đường dẫn</span>
+                            <span>Đường dẫn <span class="text-danger">*</span></span>
                             <span class="count_meta-description">0 ký tự</span>
                          </div>
                         </label>

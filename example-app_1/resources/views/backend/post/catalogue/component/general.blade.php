@@ -11,8 +11,8 @@
     <div class="col-lg-12">
         <div class="form-row">
             <label for="" class="control-label text-left">Mô tả<span class="text-danger">(*)</span></label>
-            <textarea type="text" class="form-control ck-editor" name="description" value="{{ old('description', ($postCatalogue->description) ?? '') }}"
-                placeholder="Nhập mô tả ở đây..." autocomplete="off" id="ckDescription" data-height="100"> </textarea>
+            <textarea type="text" class="form-control ck-editor" name="description" 
+                placeholder="Nhập mô tả ở đây..." autocomplete="off" id="ckDescription" data-height="100"> {{ old('description', ($postCatalogue->description) ?? '') }}</textarea>
         </div>
     </div>
 </div>
@@ -20,8 +20,8 @@
     <div class="col-lg-12">
         <div class="form-row">
             <label for="" class="control-label text-left">Nội dung</label>
-            <textarea type="text" class="form-control ck-editor" name="content" value="{{ old('content', ($postCatalogue->content) ?? '') }}"
-                placeholder="" autocomplete="off" id="ckContent" data-height="500"></textarea>
+            <textarea type="text" class="form-control ck-editor" name="content"
+                placeholder="" autocomplete="off" id="ckContent" data-height="500">{{ old('content', ($postCatalogue->content) ?? '') }}</textarea>
         </div>
     </div>
 </div>
