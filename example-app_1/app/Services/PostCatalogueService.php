@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
+use App\Classes\Nestedsetbie;
+
 /**
  * Class PostCatalogueService
  * @package App\Services
@@ -22,11 +24,16 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
 
 {
     protected $postCatalogueRepository;
-
+    protected $nestedsetbie;
 
     public function __construct(PostCatalogueRepository $postCatalogueRepository) 
     {
         $this -> postCatalogueRepository = $postCatalogueRepository;
+        $this -> nestedsetbie = new Nestedsetbie([
+            'table' => 'post_catalogue',
+            'foreignkey' => 'post_catalogue_id',
+            'language_id' => $this->currentLanguage()
+        ]);
   
     }
 
@@ -55,6 +62,11 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
 
                 $language = $this->postCatalogueRepository->createLanguagePivot($payloadLanguage, $payloadLanguage);
             }
+            $this->nestedsetbie->Get('level ASC', 'order ASC');
+            $this->nestedsetbie->Recursive(0, $this->nestedsetbie->Set());
+            $this->nestedsetbie->Action();
+
+
    
             DB::commit();
             return true;
@@ -166,7 +178,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
 
     private function paginateSelect(){
         return [
-            'parent_id',
+        'parent_id',
         'lft',
         'rgt',
         'level',

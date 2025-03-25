@@ -7,9 +7,12 @@
                     <label for="" class="control-label text-left">Chọn danh mục cha<span class="text-danger">(*)</span></label>
                     <span class="text-danger notice ">*Chọn root nếu không có danh mục cha</span>
                     <select name="parent_id" class="form-control setupSelect2">
-                        <option value="0">Chọn danh mục cha</option>
-                        <option value="1">Root</option>
-                        <option value="2">...</option>
+                        @foreach ($dropdown as $key => $val)
+                            <option {{ 
+                                $key == old('parent_id',isset($postCatalogue->parent_id) ? $postCatalogue->parent_id : '') ? ' selected' : ''}} value="{{ $key }}">{{ $val }}</option>
+                            
+                        @endforeach
+                  
                         
                     </select>
                 </div>
