@@ -46,9 +46,10 @@
             <div class="col-lg-12">
                 <div class="form-row">
           <div class="mb15">
-            <select name="" class="form-control setupSelect2">
+            <select name="publish" class="form-control setupSelect2">
                 @foreach (config('apps.general.publish') as $key => $val)
-                    <option value="{{ $key }}">{{ $val }}</option>
+                    <option {{ 
+                        $key == old('publish',isset($postCatalogue->publish) ? $postCatalogue->publish : '') ? ' selected' : ''}} value="{{ $key }}">{{ $val }}</option>
                     
                 @endforeach
                 
@@ -56,9 +57,14 @@
           
           </div>
                 </div>
-                <select name="" class="form-control setupSelect2">
+                <select name="follow" class="form-control setupSelect2">
                     @foreach (config('apps.general.follow') as $key => $val)
-                        <option value="{{ $key }}">{{ $val }}</option>
+                        <option 
+                        {{ 
+                        $key == old('follow',isset($postCatalogue->follow) ? $postCatalogue->follow : '') ? ' selected' : ''}} value="{{ $key }}">{{ $val }}
+
+                       
+                        </option>
                         
                     @endforeach
                     

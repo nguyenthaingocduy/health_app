@@ -12,4 +12,6 @@ interface LanguageServiceInterface
    public function create($request);
    public function update(int $id, $request);
    public function destroy(int $id);
+   // public function currentLanguage();
+
 }

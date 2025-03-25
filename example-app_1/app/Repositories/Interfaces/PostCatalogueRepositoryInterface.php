@@ -17,5 +17,7 @@ interface PostCatalogueRepositoryInterface
 
    public function updateByWhereIn(string $whereInField = '', array $whereIn, array $payload);
    public function getAll();
+   public function createLanguagePivot($model,array $payload = []);
+
 
 }

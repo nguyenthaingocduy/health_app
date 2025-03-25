@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Services\Interfaces\PostCatalogueServiceInterface;
+use App\Services\Interfaces\BaseServiceInterface;
+use App\Services\BaseService;
 use App\Models\PostCatalogue;
 use App\Repositories\Interfaces\PostCatalogueRepositoryInterface as PostCatalogueRepository;
 
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
  * Class PostCatalogueService
  * @package App\Services
  */
-class PostCatalogueService implements PostCatalogueServiceInterface
+class PostCatalogueService extends BaseService implements PostCatalogueServiceInterface
 
 {
     protected $postCatalogueRepository;
@@ -40,10 +42,19 @@ class PostCatalogueService implements PostCatalogueServiceInterface
         DB::beginTransaction();
         try{
 
-            $payload = $request->except(['_token', 'send']);
+            $payload = $request->only($this->payload());
             $payload['user_id'] = Auth::id();
       
             $postCatalogue = $this->postCatalogueRepository->create($payload);
+
+            if($postCatalogue->id > 0){
+               $payloadLanguage = $request->only($this->payloadLanguage());
+               $payloadLanguage['language_id'] = $this->currentLanguage();
+                $payloadLanguage['post_catalogue_id'] = $postCatalogue->id;
+
+
+                $language = $this->postCatalogueRepository->createLanguagePivot($payloadLanguage, $payloadLanguage);
+            }
    
             DB::commit();
             return true;
@@ -166,6 +177,14 @@ class PostCatalogueService implements PostCatalogueServiceInterface
         'order',
         'user_id',
         ];
+    }
+
+
+    private function payload(){
+        return ['parent_id', 'follow', 'publish', 'image'];
+    }
+    private function payloadLanguage(){
+        return ['name', 'description', 'content', 'meta_title', 'meta_description', 'meta_keyword', 'canonical'];
     }
     
 }

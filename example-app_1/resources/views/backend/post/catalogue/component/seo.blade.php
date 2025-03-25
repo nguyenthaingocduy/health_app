@@ -5,9 +5,9 @@
     </div>
     <div class="ibox-content">
         <div class="seo-container">
-            <div class="meta-title">Bạn chưa có tiêu đề SEO</div>
-            <div class="canonical">http://duong-dan-cua-ban.html</div>
-            <div class="meta-description">Bạn chưa có mô tả SEO</div>
+            <div class="meta-title">{{ (old('meta_title')) ?? 'Bạn chưa có tiêu đề SEO'}}</div>
+            <div class="canonical">{{ (old('canonical')) ? config('app.url').old('canonical').config('apps.general.suffix') : 'http://duong-dan-cua-ban.html' }}</div>
+            <div class="meta-description">{{ (old('meta_description')) ?? 'Bạn chưa có tiêu đề SEO'}}</div>
         </div>
         <div class="seo-wrapper">
             <div class="row mb15">
