@@ -42,7 +42,14 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
     public function paginate($request){
         $condition['keyword'] = addslashes($request->input('keyword'));
         $perPage = $request->integer('perpage');
-        $postCatalogues = $this->postCatalogueRepository->pagination($this->paginateSelect(), $condition, [], ['path' => 'postCatalogue/index'], $perPage);
+        $postCatalogues = $this->postCatalogueRepository->pagination($this->paginateSelect(), $condition, [
+            ['post_catalogue_language as tb2','tb2.post_catalogue_id', '=', 'post_catalogues.id']
+          
+        ], ['path' => 'post.catalogue.index'], $perPage, [], 
+        [
+            'post_catalogues.lft', 'ASC'
+        ]
+    );
         return $postCatalogues;
     }
     public function create($request){
@@ -178,22 +185,19 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
 
     private function paginateSelect(){
         return [
-        'parent_id',
-        'lft',
-        'rgt',
-        'level',
-        'image',
-        'icon',
-        'album',
-        'publish',
-        'order',
-        'user_id',
+        'post_catalogues.id',
+        'post_catalogues.publish',
+        'post_catalogues.image',
+        'post_catalogues.level',
+        'post_catalogues.order',
+        'tb2.name',
+        'tb2.canonical',
         ];
     }
 
 
     private function payload(){
-        return ['parentid', 'publish', 'image'];
+        return ['parentid','follow', 'publish', 'image'];
     }
     private function payloadLanguage(){
         return ['name', 'description', 'content', 'meta_title', 'meta_description', 'meta_keyword', 'canonical'];

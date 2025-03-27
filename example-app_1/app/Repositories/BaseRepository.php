@@ -15,15 +15,31 @@ class BaseRepository implements BaseRepositoryInterface{
         $this->model = $model;
     }
 
-    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1){
+    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = []){
         $query = $this->model->select(is_array($column) ? $column : ['*'])
         ->where(function($query) use ($condition){
             if(isset($condition['keyword']) && !empty($condition['keyword'])){
                 $query->where('name', 'LIKE', '%'.$condition['keyword'].'%'); 
             }
         });
-        if(!empty($join)){
-            $query->join(...$join);
+        if(isset($relations) && !empty($relations)){
+            foreach($relations as $relation){
+                $query->withCount($relation);
+            }
+        }
+
+
+
+
+        if(isset($join) && is_array($join) && count($join)){
+            foreach($join as $key => $val){
+                $query->join($val[0], $val[1], $val[2], $val[3]);
+            }
+        }
+
+        if(isset($orderBy) && is_array($orderBy) && count($orderBy)){
+                $query->orderBy($orderBy[0], $orderBy[1]);
+            
         }
         return $query->paginate($perPage)
                     ->withQueryString()->withPath(url($extend['path']));

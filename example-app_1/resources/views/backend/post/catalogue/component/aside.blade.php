@@ -52,7 +52,7 @@
             <select name="publish" class="form-control setupSelect2">
                 @foreach (config('apps.general.publish') as $key => $val)
                     <option {{ 
-                        $key == old('publish',isset($postCatalogue->publish) ? $postCatalogue->publish : '') ? ' selected' : ''}} value="{{ $key }}">{{ $val }}</option>
+                                $key == old('publish',isset($postCatalogue->publish) ? $postCatalogue->publish : '') ? ' selected' : ''}} value="{{ $key }}">{{ $val }}</option>
                     
                 @endforeach
                 

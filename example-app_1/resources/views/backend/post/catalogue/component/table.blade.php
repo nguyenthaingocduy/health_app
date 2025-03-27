@@ -1,13 +1,10 @@
 <table class="table table-striped table-bordered" >
     <thead>
     <tr>
-        <th> <input type="checkbox" value="" id="checkAll" class="input-checkbox"> </th>
-        <th style="width: 100px">Ảnh</th>
-        <th >Tên ngôn ngữ</th>
-        <th>Canonical</th>
-        <th>Mô tả</th>
-        <th class="text-center"> Trạng thái</th>
-        <th class="text-center">Thao tác</th>
+        <th style="width: 50px"> <input type="checkbox" value="" id="checkAll" class="input-checkbox"> </th>
+        <th >Tên Nhóm</th>
+        <th class="text-center" style="width: 100px"> Trạng thái</th>
+        <th class="text-center" style="width: 100px"    >Thao tác</th>
     </tr>
     </thead>
     <tbody>
@@ -17,17 +14,8 @@
     <tr>
         <td><input type="checkbox" value="{{ $postCatalogue->id }}" class="checkboxItem input-checkbox"></td>
         <td>
-            <span class="image img-cover"><img src="{{ $postCatalogue->image }}" alt=""></span>
+           {{ str_repeat('|-----', (($postCatalogue->level > 0) ? ($postCatalogue->level - 1): 0)).$postCatalogue->name }}
         </td>
-        <td>
-           {{ $postCatalogue->name }}
-        </td>
-        <td>
-            {{ $postCatalogue->canonical }}
-        </td>
-        <td>
-            {{ $postCatalogue->description }}
-         </td>
         <td class="text-center js-switch-{{ $postCatalogue->id }}"> 
 
             <input type="checkbox" value="{{ $postCatalogue->publish }}" class="js-switch status" data-field="publish" data-model="PostCatalogue" {{ ($postCatalogue->publish == 1) ? 'checked' : '' }} data-modelId = {{ $postCatalogue->id }} />
