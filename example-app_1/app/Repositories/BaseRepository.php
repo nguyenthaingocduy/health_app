@@ -15,7 +15,7 @@ class BaseRepository implements BaseRepositoryInterface{
         $this->model = $model;
     }
 
-    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = []){
+    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = ['id', 'DESC']){
         $query = $this->model->select(is_array($column) ? $column : ['*'])
         ->where(function($query) use ($condition){
             if(isset($condition['keyword']) && !empty($condition['keyword'])){

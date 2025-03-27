@@ -10,7 +10,11 @@ return [
         'title' => 'Thêm nhóm Thành Viên',
         
         ],
-        'delete' => [
+    'edit' => [
+        'title' => 'Cập nhật nhóm Thành Viên',
+        
+        ],
+    'delete' => [
         'title' => 'Xóa nhóm Thành Viên',
         
         ],

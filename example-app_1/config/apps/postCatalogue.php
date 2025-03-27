@@ -3,15 +3,19 @@
 
 return [
     'index' => [
-        'title' => 'Quản Lý Nhóm Bài Đăng',
-        'tableHeading' => 'Danh Sách Nhóm Bài Đăng',
+        'title' => 'Quản lý nhóm bài viết',
+        'tableHeading' => 'Danh sách nhóm bài viết',
     ],
     'create' => [
-        'title' => 'Thêm Nhóm Bài Đăng',
+        'title' => 'Thêm mới nhóm bài viết',
         
         ],
+        'edit' => [
+            'title' => 'Cập nhật nhóm bài viết',
+            
+            ],
         'delete' => [
-        'title' => 'Xóa Nhóm Bài Đăng',
+            'title' => 'Xóa nhóm bài viết',
         
         ],
        

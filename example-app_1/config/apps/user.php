@@ -10,8 +10,12 @@ return [
         'title' => 'Thêm Thành Viên',
         
         ],
+    'edit' => [
+        'title' => 'Cập nhật Thành Viên',
+        
+        ],
         'delete' => [
-        'title' => 'Xóa Thành Viên',
+            'title' => 'Xóa Thành Viên',
         
         ],
        

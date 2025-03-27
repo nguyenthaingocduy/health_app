@@ -10,7 +10,11 @@ return [
         'title' => 'Thêm Ngôn Ngữ',
         
         ],
-        'delete' => [
+    'edit' => [
+        'title' => 'Cập nhật Ngôn Ngữ',
+        
+        ],
+    'delete' => [
         'title' => 'Xóa Ngôn Ngữ',
         
         ],

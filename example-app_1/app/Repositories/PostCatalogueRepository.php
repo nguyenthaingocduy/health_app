@@ -18,6 +18,11 @@ class PostCatalogueRepository extends BaseRepository  implements PostCatalogueRe
         return [];
     }
 
+    public function getPostCatalogueById(int $id = 0, $language_id = 0) {
+        // Trả về thông tin người dùng theo $id
+        return [];
+    }
+
 
    
 
