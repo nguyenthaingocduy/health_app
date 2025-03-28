@@ -18,6 +18,37 @@ class PostCatalogueRepository extends BaseRepository  implements PostCatalogueRe
         return [];
     }
 
+    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = ['id', 'DESC'], array $where = []){
+        $query = $this->model->select(is_array($column) ? $column : ['*'])
+        ->where(function($query) use ($condition){
+            if(isset($condition['keyword']) && !empty($condition['keyword'])){
+                $query->where('name', 'LIKE', '%'.$condition['keyword'].'%'); 
+            }
+        });
+        if(isset($relations) && !empty($relations)){
+            foreach($relations as $relation){
+                $query->withCount($relation);
+            }
+        }
+
+
+
+
+        if(isset($join) && is_array($join) && count($join)){
+            foreach($join as $key => $val){
+                $query->join($val[0], $val[1], $val[2], $val[3]);
+            }
+        }
+
+        if(isset($orderBy) && is_array($orderBy) && count($orderBy)){
+                $query->orderBy($orderBy[0], $orderBy[1]);
+            
+        }
+        return $query->paginate($perPage)
+                    ->withQueryString()->withPath(url($extend['path']));
+
+    }
+
     public function getPostCatalogueById(int $id = 0, $language_id = 0) {
         // Trả về danh sách người dùng (ví dụ)
         return $this->model->select([

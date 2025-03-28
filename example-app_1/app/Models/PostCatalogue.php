@@ -14,7 +14,7 @@ class PostCatalogue extends Model
 
     protected $fillable = [
         // 'name',
-        'parent_id',
+        'parentid',
         'lft',
         'rgt',
         'level',
@@ -22,6 +22,7 @@ class PostCatalogue extends Model
         'icon',
         'album',
         'publish',
+        'follow',
         'order',
         'user_id',
     ];

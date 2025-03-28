@@ -15,11 +15,18 @@ class BaseRepository implements BaseRepositoryInterface{
         $this->model = $model;
     }
 
-    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = ['id', 'DESC']){
+    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = ['id', 'DESC'], array $where = []){
         $query = $this->model->select(is_array($column) ? $column : ['*'])
         ->where(function($query) use ($condition){
             if(isset($condition['keyword']) && !empty($condition['keyword'])){
                 $query->where('name', 'LIKE', '%'.$condition['keyword'].'%'); 
+            }
+            if(isset($condition['where']) && count($condition['where'])){
+                foreach($condition['where'] as $key => $val){
+                    
+                        $query->where($key, $val[0], $val[1], $val[2]);
+                    
+                }
             }
         });
         if(isset($relations) && !empty($relations)){
