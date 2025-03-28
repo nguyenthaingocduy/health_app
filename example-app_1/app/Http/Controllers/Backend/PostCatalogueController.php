@@ -27,6 +27,8 @@ class PostCatalogueController extends Controller
 
     protected $language;
 
+    protected $nestedsetbie;
+
     public function __construct(PostCatalogueService $postCatalogueService ,PostCatalogueRepository $postCatalogueRepository){
         $this->postCatalogueService = $postCatalogueService;
         $this->postCatalogueRepository = $postCatalogueRepository;
@@ -80,13 +82,6 @@ class PostCatalogueController extends Controller
     }
     public function edit($id){
         $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById($id, $this->language);
-
-        foreach($postCatalogue->post_catalogue_language as $language){
-            $postCatalogue[$language->language_id] = $language;
-        }
-
-
-
 
         $config = $this->configData();
        

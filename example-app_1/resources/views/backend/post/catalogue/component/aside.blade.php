@@ -27,11 +27,18 @@
         <h5>Chọn ảnh đại diện</h5>
     </div>
     <div class="ibox-content">
-        <div class="row mb15">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="form-row">
-                    <span class="image img-cover img-target"><img src="{{ (old('image') ?? 'backend/img/no_img.jpg') }}" alt=""></span>
-                    <input type="hidden" name="image" value="{{ old('image', ($postCatalogue->image) ?? '') }}">
+                 
+                 
+                
+                    <span class="image img-cover img-target"><img src="{{ (old('image', $postCatalogue->image) ?? 'backend/img/no_img.jpg') }}" alt="">
+                    </span>
+                    <input type="hidden" name="image" value="{{ (old('image', $postCatalogue->image) ?? '') }}">
+
+
+
                   
                 </div>
             </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Lang;
 
-class PostCatalogue extends Model
+class PostCatalogueLanguage extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'post_catalogues_language';

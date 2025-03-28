@@ -29,5 +29,6 @@ interface PostCatalogueRepositoryInterface
    public function getAll();
    public function createLanguagePivot($model,array $payload = []);
 
+   public function getPostCatalogueById(int $id = 0, $language_id = 0);
 
 }
