@@ -1,6 +1,7 @@
 @include('backend.dashboard.component.breadcrumb', ['title' => $config ['seo']['create']['title']])
 
-{{-- @if($errors->any())
+
+@if($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -9,10 +10,7 @@
             @endforeach
         </ul>
     </div>
-@endif --}}
-
-
-
+@endif
 <form action="{{ route('post.catalogue.destroy', $postCatalogue->id) }}" method="post" class="box">
     @csrf
     @method('DELETE')
@@ -22,7 +20,7 @@
                 <div class="panel-head">
                     <div class="panel-title">Thông tin chung</div>
                     <div class="panel-description">
-                        <p>- Bạn muốn xóa ngôn ngữ có tên là: {{ $postCatalogue->name }}</p>
+                        <p>- Bạn muốn xóa ngôn ngữ có tên là: <span class="text-danger">{{ $postCatalogue->name }}</span> </p>
                         <p>- Lưu ý: Không thể khôi phục ngôn ngữ khi đã xóa. Hãy chắc chắn bạn muốn thực hiện chức năng này <span class="text-danger">(*)</span> là bắt buộc</p>
                     </div>
                 </div>

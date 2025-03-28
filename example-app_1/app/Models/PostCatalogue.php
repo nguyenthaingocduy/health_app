@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\Rule;
 
 
 class PostCatalogue extends Model
@@ -35,6 +36,17 @@ class PostCatalogue extends Model
     }
     public function post_catalogue_language(){
         return $this->hasMany(PostCatalogueLanguage::class, 'post_catalogue_id', 'id');
+    }
+
+    public function isChildrenNode($id = 0){
+        $postCatalogue = PostCatalogue::find($id);
+
+        if($postCatalogue->rgt - $postCatalogue->lft !== 1){
+            return false;
+        } 
+
+        return true;
+        
     }
  
 }
