@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckPostCatalogueChildrenRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DeletePostCatalogueRequest extends FormRequest
@@ -21,8 +22,11 @@ class DeletePostCatalogueRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id =$this->route('id');
         return [
-            //
+            'name' => [
+                new CheckPostCatalogueChildrenRule($id)
+            ] ,
         ];
     }
 }
