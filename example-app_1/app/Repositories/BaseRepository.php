@@ -15,29 +15,45 @@ class BaseRepository implements BaseRepositoryInterface{
         $this->model = $model;
     }
 
-    public function pagination($column = ['*'], $condition = [], $join = [], $extend = [], $perPage = 1, array $relations = [], array $orderBy = ['id', 'DESC'], array $where = []){
+    public function pagination(
+        array $column = ['*'], 
+        array $condition = [], 
+        int $perPage = 1,
+        array $extend = [],
+        array $orderBy = ['id', 'DESC'],
+        array $join = [],
+        array $relations = [],
+        ){
         $query = $this->model->select(is_array($column) ? $column : ['*'])
         ->where(function($query) use ($condition){
             if(isset($condition['keyword']) && !empty($condition['keyword'])){
                 $query->where('name', 'LIKE', '%'.$condition['keyword'].'%'); 
             }
-            if(isset($condition['where']) && count($condition['where'])){
+            // if(isset($condition['where']) && count($condition['where'])){
+            //     foreach($condition['where'] as $key => $val){
+                    
+            //             $query->where($val[0], $val[1], $val[2]);                  
+            //     }
+            // }
+            // return $query;
+
+
+            if(isset($condition['where']) && is_array($condition['where']) && count($condition['where'])){
                 foreach($condition['where'] as $key => $val){
-                    
-                        $query->where($key, $val[0], $val[1], $val[2]);
-                    
+                    if (is_array($val) && count($val) >= 3) {  // Kiểm tra $val hợp lệ
+                        $query->where($val[0], $val[1], $val[2]);  
+                    } else {
+                        \Log::error("Invalid condition format: " . json_encode($val));
+                    }
                 }
             }
+            
         });
         if(isset($relations) && !empty($relations)){
             foreach($relations as $relation){
                 $query->withCount($relation);
             }
         }
-
-
-
-
         if(isset($join) && is_array($join) && count($join)){
             foreach($join as $key => $val){
                 $query->join($val[0], $val[1], $val[2], $val[3]);

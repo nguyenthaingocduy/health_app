@@ -15,13 +15,13 @@ interface PostCatalogueRepositoryInterface
    public function delete(int $id);
    public function forceDelete(int $id = 0);
    public function pagination(
-      array $column = ['*'],
-      array $condition = [],
-      array $join = [],
-      array $extend = [],
+      array $column = ['*'], 
+      array $condition = [], 
       int $perPage = 1,
+      array $extend = [],
+      array $orderBy = ['id', 'DESC'],
+      array $join = [],
       array $relations = [],
-      array $orderBy = []
    );
 
 

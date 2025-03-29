@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 use App\Classes\Nestedsetbie;
 
@@ -49,13 +50,17 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
             'tb2.language_id', '=', $this->language,
         ];
         $perPage = $request->integer('perpage');
-        $postCatalogues = $this->postCatalogueRepository->pagination($this->paginateSelect(), $condition, [
+        $postCatalogues = $this->postCatalogueRepository->pagination($this->paginateSelect(), 
+        $condition, 
+        $perPage, 
+        ['path' => 'post.catalogue.index'], 
+        ['post_catalogues.lft', 'ASC'],
+        [
             ['post_catalogue_language as tb2','tb2.post_catalogue_id', '=', 'post_catalogues.id']
           
-        ], ['path' => 'post.catalogue.index'], $perPage, [], 
-        [
-            'post_catalogues.lft', 'ASC'
-        ]
+        ], 
+
+       
     );
         return $postCatalogues;
     }
@@ -182,27 +187,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
         }
     }
 
-    // private function changeUserStatus($post, $value){
-    //     DB::beginTransaction();
-    //     try{
-    //         $array = [];
-    //         if(isset($post['modelId'])){
-    //             $array[] = $post['modelId'];
-    //         }else {
-    //             $array = $post['id'];
-    //         }
-    //         $payload[$post['field']] = $value;
-    //         $this->postCatalogueRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
-
-    //         DB::commit();
-    //         return true;
-    //     }catch(\Exception $e){
-    //         DB::rollBack();
-    //         // Log::error($e->getMessage());
-    //         echo $e->getMessage();die();
-    //         return false;
-    //     }
-    // }
+    
 
 
 
