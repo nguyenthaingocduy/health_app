@@ -38,7 +38,7 @@ class PostCatalogue extends Model
         return $this->hasMany(PostCatalogueLanguage::class, 'post_catalogue_id', 'id');
     }
 
-    public function isNodeCheck($id = 0){
+    public static function isNodeCheck($id = 0){
         $postCatalogue = PostCatalogue::find($id);
 
         if($postCatalogue->rgt - $postCatalogue->lft !== 1){

@@ -31,9 +31,9 @@
             <div class="col-lg-12">
                 <div class="form-row">
                 
-                    <span class="image img-cover img-target "><img src="{{ (old('image', $postCatalogue->image) ?? 'backend/img/no_img.jpg') }}" alt="">
+                    <span class="image img-cover img-target "><img src="{{ (old('image', ($postCatalogue->image) ?? '') ? old('image', ($postCatalogue->image) ?? '') : 'backend/img/no_img.jpg') }}" alt="">
                     </span>
-                    <input type="hidden" name="image" class="upload-image" value="{{ (old('image', $postCatalogue->image) ?? '') }}">
+                    <input type="hidden" name="image" class="upload-image" value="{{ old('image', ($postCatalogue->image) ?? '') }}">
 
 
 
