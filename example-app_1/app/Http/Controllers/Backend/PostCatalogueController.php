@@ -91,6 +91,7 @@ class PostCatalogueController extends Controller
         $config['seo'] = config('apps.postCatalogue');
         $config['method'] = 'edit';
         $dropdown = $this->nestedsetbie->dropdown();
+        $album = json_decode($postCatalogue->album);
 
         $template = 'backend.post.catalogue.store';
         return view('backend.dashboard.layout', compact('template','config','dropdown','postCatalogue'));

@@ -5,6 +5,7 @@
     <script src="backend/library/library.js"></script>
     <script src="backend/js/inspinia.js"></script>
     <script src="backend/js/plugins/pace/pace.min.js"></script>
+    <script src="backend/plugin/jquery-ui.js"></script>
 
     @if(isset($config['js']) && is_array($config['js']))
     @foreach ($config['js'] as $key => $val)

@@ -12,6 +12,12 @@
            })
    }
 }
+HT.uploadAlbum = () => {
+   $(document).on('click', '.upload-picture', function(e){
+       HT.browseServerAlbum();
+       e.preventDefault();
+   })
+}
 
 HT.multipleUploadImageCkeditor = () => {
    $(document).on('click', '.multipleUploadImageCkeditor', function(e){
@@ -118,12 +124,74 @@ HT.browseServerCkeditor = (object, type, target) => {
    finder.popup();
 }
 
+HT.browseServerAlbum = () => {
+   var type = 'Images';
+   var finder = new CKFinder();
+
+   finder.resourceType = type;
+   finder.selectActionFunction = function(fileUrl, data, allFiles) {
+       let html = '';
+       let uniqueImages = new Set();
+
+       console.log("Danh sách ảnh chọn:", allFiles);
+
+       for (var i = 0; i < allFiles.length; i++) {
+           var image = allFiles[i].url;
+
+           if (!uniqueImages.has(image) && $('#sortable').find('input[value="'+image+'"]').length === 0) {
+               uniqueImages.add(image);
+
+               html += '<li class="ui-state-default">';
+               html += ' <div class="thumb">';
+               html += ' <span class="span image img-scaledown">';
+               html += '<img src="'+image+'" alt="'+image+'">';
+               html += '<input type="hidden" name="album[]" value="'+image+'">';
+               html += '</span>';
+               html += '<button class="delete-image"><i class="fa fa-trash"></i></button>';
+               html += '</div>';
+               html += '</li>';
+           }
+       }
+
+       if (html !== '') {
+           $('.click-to-upload').addClass('hidden');
+           $('#sortable').append(html);
+           $('.upload-list').removeClass('hidden');
+
+           // Kích hoạt sortable() sau khi thêm ảnh
+           $("#sortable").sortable({
+               placeholder: "ui-state-highlight",
+               update: function(event, ui) {
+                   console.log("Thứ tự mới:", $("#sortable").sortable("toArray"));
+               }
+           }).disableSelection();
+       }
+   };
+
+   finder.popup();
+};
+
+
+HT.deletePicture = () => {
+   $(document).on('click', '.delete-image', function(){
+       let _this = $(this)
+       _this.parents('.ui-state-default').remove()
+       if($('.ui-state-default').length == 0){
+           $('.click-to-upload').removeClass('hidden')
+           $('.upload-list').addClass('hidden')
+       }
+   })
+}
+
 
   $(document).ready(function(){
      HT.uploadImageToInput();
      HT.setupCKEditor();
      HT.uploadImageAvatar();
      HT.multipleUploadImageCkeditor();
+     HT.uploadAlbum();
+     HT.deletePicture();
+
 
   });
 })(jQuery);
