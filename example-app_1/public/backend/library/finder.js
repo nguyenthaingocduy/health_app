@@ -13,6 +13,15 @@
    }
 }
 
+HT.multipleUploadImageCkeditor = () => {
+   $(document).on('click', '.multipleUploadImageCkeditor', function(e){
+       let object = $(this)
+       let target = object.attr('data-target')
+       HT.browseServerCkeditor(object, 'Images', target);
+       e.preventDefault()
+   })
+}
+
 HT.ckeditor4 = (elementId, elementHeight) => {
   if(typeof(elementHeight) == 'undefined'){
       elementHeight = 500;
@@ -81,13 +90,40 @@ HT.browerServeAvatar = (object,type) => {
   }
   finder.popup();
 }
+HT.browseServerCkeditor = (object, type, target) => {
+   if(typeof(type) == 'undefined'){
+       type = 'Images';
+   }
+   var finder = new CKFinder();
+   
+   finder.resourceType = type;
+   finder.selectActionFunction = function( fileUrl, data, allFiles ) {
+       let html = '';
+       console.log(allFiles); // Debug xem có bị lặp phần tử không
 
+        let uniqueImages = new Set(); // Dùng Set để tránh trùng lặp ảnh
+
+        for (var i = 0; i < allFiles.length; i++) {
+            var image = allFiles[i].url;
+
+            if (!uniqueImages.has(image)) { // Chỉ thêm nếu chưa tồn tại
+                uniqueImages.add(image);
+                html += '<div class="image-content"><figure>';
+                html += '<img src="'+image+'" alt="'+image+'">';
+                html += '<figcaption>Nhập vào mô tả cho ảnh</figcaption>';
+                html += '</figure></div>';
+            }}
+       CKEDITOR.instances[target].insertHtml(html)
+   }
+   finder.popup();
+}
 
 
   $(document).ready(function(){
      HT.uploadImageToInput();
      HT.setupCKEditor();
      HT.uploadImageAvatar();
+     HT.multipleUploadImageCkeditor();
 
   });
 })(jQuery);

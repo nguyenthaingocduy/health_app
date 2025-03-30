@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Base;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
