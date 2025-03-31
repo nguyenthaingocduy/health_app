@@ -10,11 +10,12 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserCatalogueController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PostCatalogueController;
-
+use App\Http\Controllers\Backend\PostController;
 
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\LoginMiddleware;
 use App\Http\Controllers\Ajax\LocationController;
+
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -77,6 +78,18 @@ Route::group(['prefix' => 'post/catalogue', 'middleware' => AuthenticateMiddlewa
     Route::get('{id}/delete', [PostCatalogueController::class, 'delete'])->where(['id'=>'[0-9]+'])->name('post.catalogue.delete');
     Route::DELETE('{id}/destroy', [PostCatalogueController::class, 'destroy'])->where(['id'=>'[0-9]+'])->name('post.catalogue.destroy');
 });
+
+
+Route::group(['prefix' => 'post'], function () {
+    Route::get('index', [PostController::class, 'index'])->name('post.index');
+    Route::get('create', [PostController::class, 'create'])->name('post.create');
+    Route::post('store', [PostController::class, 'store'])->name('post.store');
+    Route::get('{id}/edit', [PostController::class, 'edit'])->where(['id' => '[0-9]+'])->name('post.edit');
+    Route::post('{id}/update', [PostController::class, 'update'])->where(['id' => '[0-9]+'])->name('post.update');
+    Route::get('{id}/delete', [PostController::class, 'delete'])->where(['id' => '[0-9]+'])->name('post.delete');
+    Route::delete('{id}/destroy', [PostController::class, 'destroy'])->where(['id' => '[0-9]+'])->name('post.destroy');
+ });
+
 
 
 // BACKEND ROUTES

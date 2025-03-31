@@ -55,8 +55,9 @@ class PostCatalogueController extends Controller
                  'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js'
             ],
             'css' => ['backend/css/plugins/switchery/switchery.css" rel="stylesheet', 
-            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css']
-        ];;
+            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'],
+            'model' => 'PostCatalogue',
+        ];
 
         $config['seo'] = config('apps.postCatalogue');
 
@@ -94,7 +95,7 @@ class PostCatalogueController extends Controller
         $album = json_decode($postCatalogue->album);
 
         $template = 'backend.post.catalogue.store';
-        return view('backend.dashboard.layout', compact('template','config','dropdown','postCatalogue'));
+        return view('backend.dashboard.layout', compact('template','config','dropdown','postCatalogue','album'));
     }
     public function update($id, UpdatePostCatalogueRequest $request){
         if($this->postCatalogueService->update($id, $request)){

@@ -92,25 +92,37 @@ class BaseRepository implements BaseRepositoryInterface{
     public function forceDelete(int $id = 0){
         return $this->findById($id)->forceDelete();
     }
-
-    public function all(){
-        return $this->model->all();
+    
+    public function forceDeleteByCondition(array $condition = []){
+        $query = $this->model->newQuery();
+        foreach($condition as $key => $val){
+            $query->where($val[0], $val[1] , $val[2]);
+        }
+        return $query->forceDelete();
     }
 
-    public function findById(int $modelId, 
-    array $column = ['*'], 
-    array $relation = [])
-    {
-        
+    public function all(array $relation = []){
+        return $this->model->with($relation)->get();
+    }
+
+    public function findById(
+        int $modelId,
+        array $column = ['*'],
+        array $relation = []
+    ){
         return $this->model->select($column)->with($relation)->findOrFail($modelId);
     }
 
-
-    public function createLanguagePivot($model,array $payload = []){
-        if(is_array($model)) {
-            $model = $this->model->find($model['post_catalogue_id']);
+    
+    public function findByCondition($condition = []){
+        $query = $this->model->newQuery();
+        foreach($condition as $key => $val){
+            $query->where($val[0], $val[1] , $val[2]);
         }
-        return $model->languages()->attach($model->id, $payload);
+        return $query->first();
+    }
+    public function createPivot($model, array $payload = [], string $relation = ''){
+        return $model->{$relation}()->attach($model->id, $payload);
     }
     
 }
